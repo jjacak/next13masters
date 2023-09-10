@@ -16,7 +16,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<body className={`${manrope.variable} ${playfair_display.variable}`}>{children}</body>
+			<body
+				className={`${manrope.variable} ${playfair_display.variable} min-h-screen bg-moon-mist font-sans text-cod-gray`}
+			>
+				{children}
+			</body>
 		</html>
 	);
 }
