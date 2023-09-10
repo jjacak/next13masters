@@ -12,6 +12,9 @@ const config: Config = {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			gridTemplateColumns: {
+				"fill-1": "repeat(auto-fill, minmax(300px, 1fr))",
+			},
 			colors: {
 				"moon-mist": {
 					DEFAULT: "#E1E0D2",
