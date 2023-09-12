@@ -19,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body
 				className={`${manrope.variable} ${playfair_display.variable} min-h-screen bg-moon-mist font-sans text-cod-gray`}
 			>
-				{children}
+				<main className="sm:py-15 mx-auto max-w-md p-10 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
+					{children}
+				</main>
 			</body>
 		</html>
 	);

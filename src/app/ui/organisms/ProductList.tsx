@@ -23,7 +23,7 @@ const products: ItemCardProps[] = [
 
 export const ProductList: FC = () => {
 	return (
-		<ul data-testid="products-list" className="grid-cols-fill-1 grid gap-10 p-10">
+		<ul data-testid="products-list" className="grid grid-cols-fill-1 gap-10">
 			{products.map(({ product, image }) => (
 				<ListItemCard key={product.id} product={product} image={image} />
 			))}

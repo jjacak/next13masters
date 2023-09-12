@@ -6,7 +6,7 @@ export const ListItemDescription: FC<ItemDescriptionProps> = ({ name, category, 
 	return (
 		<div className="flex grow flex-col justify-between gap-3 p-5">
 			<div className="flex flex-col">
-				<h1 className="text-3xl font-bold ">{name}</h1>
+				<h3 className="text-3xl font-bold ">{name}</h3>
 				<p className="text-xl">{category}</p>
 			</div>
 			<div className="flex flex-col">
