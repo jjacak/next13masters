@@ -2,10 +2,10 @@ import type { MenuItem } from "./types";
 
 export const MENU_ITEMS: MenuItem[] = [
 	{ name: "Home", path: "/" },
-	{ name: "Shop", path: "/products", img: { src: "/img/pots.jpg", alt: "Shop" } },
-	{ name: "Cart", path: "/cart", img: { src: "/img/ficus.jpg", alt: "Cart" } },
-	{ name: "Privacy policy", id: 3, path: "/privacy-policy" },
-	{ name: "Contact", path: "/contact" },
+	{ name: "Shop", path: "/products"},
+	{ name: "Cart", path: "/products" },
+	{ name: "Privacy policy", path: "/products" },
+	{ name: "Contact", path: "/products" },
 ];
 
 export const MAIN_MENU_ITEMS: MenuItem[] = [
