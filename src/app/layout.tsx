@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
+import { TopNavigation } from "./ui/organisms/TopNavigation";
 
 const manrope = Manrope({ subsets: ["latin-ext"], variable: "--font-manrope" });
 const playfair_display = Playfair_Display({
@@ -17,8 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body
-				className={`${manrope.variable} ${playfair_display.variable} min-h-screen bg-moon-mist font-sans text-cod-gray`}
+				className={`${manrope.variable} ${playfair_display.variable} relative min-h-screen bg-moon-mist-400 font-sans text-cod-gray pt-20`}
 			>
+				<TopNavigation />
 				{children}
 			</body>
 		</html>

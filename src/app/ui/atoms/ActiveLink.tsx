@@ -14,6 +14,7 @@ type ActiveLinkProps<T extends string> = {
 	activeClassName?: string;
 };
 
+
 export const ActiveLink: FC<ActiveLinkProps<string>> = ({
 	children,
 	href,

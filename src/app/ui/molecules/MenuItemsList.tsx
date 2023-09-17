@@ -4,13 +4,13 @@ import { ActiveLink } from "../atoms/ActiveLink";
 
 export const MenuITemsList: FC = () => {
 	return (
-		<ul>
-			{MENU_ITEMS.map(({ name, path, id }) => (
-				<li key={id} className="">
+		<ul className="max-w-2xl px-3 py-10">
+			{MENU_ITEMS.map(({ name, path }) => (
+				<li key={path.toString()} className="group inline-block px-2 py-1">
 					<ActiveLink
 						href={path}
-						className="text-lg font-semibold"
-						activeClassName="text-lg font-bold"
+						className="text-3xl font-semibold sm:text-5xl "
+						activeClassName="text-3xl sm:text-5xl font-bold italic"
 					>
 						{name}
 					</ActiveLink>

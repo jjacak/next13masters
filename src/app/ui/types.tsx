@@ -29,6 +29,5 @@ export type ButtonProps = {
 export type MenuItem = {
 	name: string;
 	path: Route<string> | URL;
-	id: number;
-	img?: string;
+	img?: ItemImageProps
 };
