@@ -9,7 +9,7 @@ export const ListItemCoverImage: FC<ItemImageProps> = ({ src, alt }) => {
 			alt={alt}
 			width={320}
 			height={180}
-			className="h-96 object-cover object-center"
+			className="h-80 object-cover object-center"
 		/>
 	);
 };
