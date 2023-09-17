@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Route } from "next";
 
 export type ItemDescriptionProps = {
 	name: string;
@@ -23,4 +24,10 @@ export type ButtonProps = {
 	onClick?: () => void;
 	className?: string;
 	type?: "button" | "submit" | "reset";
+};
+
+export type MenuItem = {
+	name: string;
+	path: Route<string> | URL;
+	img?: ItemImageProps
 };
