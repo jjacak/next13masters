@@ -1,21 +1,20 @@
 import type { ReactNode } from "react";
 import type { Route } from "next";
 
-export type ItemDescriptionProps = {
-	name: string;
-	category: string;
+export type ProductData = {
+	id: string;
+	title: string;
 	price: number;
-	id: number;
+	description: string;
+	category: string;
+	rating: Rating;
+	image: string;
+	longDescription: string;
 };
 
-export type ItemImageProps = {
-	src: string;
-	alt: string;
-};
-
-export type ItemCardProps = {
-	product: ItemDescriptionProps;
-	image: ItemImageProps;
+export type Rating = {
+	rate: number;
+	count: number;
 };
 
 export type ButtonProps = {
@@ -29,5 +28,8 @@ export type ButtonProps = {
 export type MenuItem = {
 	name: string;
 	path: Route<string> | URL;
-	img?: ItemImageProps
+};
+
+export type ItemCardProps = {
+	products: ProductData[];
 };
