@@ -14,7 +14,6 @@ type ActiveLinkProps<T extends string> = {
 	activeClassName?: string;
 };
 
-
 export const ActiveLink: FC<ActiveLinkProps<string>> = ({
 	children,
 	href,
@@ -24,7 +23,11 @@ export const ActiveLink: FC<ActiveLinkProps<string>> = ({
 	const path = usePathname();
 	const isActive = checkActiveLink(path, href.toString());
 	return (
-		<Link href={href} className={clsx(isActive ? activeClassName : className)}>
+		<Link
+			href={href}
+			className={clsx(isActive ? activeClassName : className)}
+			aria-current={isActive ? true : undefined}
+		>
 			{children}
 		</Link>
 	);

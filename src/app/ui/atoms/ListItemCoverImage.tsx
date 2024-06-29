@@ -1,15 +1,15 @@
 import type { FC } from "react";
 import Image from "next/image";
-import type { ItemImageProps } from "../types";
+import type { ProductData } from "../types";
 
-export const ListItemCoverImage: FC<ItemImageProps> = ({ src, alt }) => {
+export const ListItemCoverImage: FC<Pick<ProductData, "image" | "title">> = ({ image, title }) => {
 	return (
 		<Image
-			src={src}
-			alt={alt}
-			width={320}
+			src={image}
+			alt={title}
+			width={288}
 			height={180}
-			className="h-96 object-cover object-center"
+			className="h-72 object-cover object-center"
 		/>
 	);
 };

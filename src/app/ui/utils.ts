@@ -1,10 +1,9 @@
 export const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(value);
-
-}
+	return new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "USD",
+	}).format(value);
+};
 
 export const checkActiveLink = (path: string, href: string) => {
 	const pathParts = path.split("/");

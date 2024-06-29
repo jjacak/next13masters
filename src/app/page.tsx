@@ -1,5 +1,6 @@
 import { ProductList } from "@/ui/organisms/ProductList";
 
 export default function Home() {
-	return <ProductList />;
+
+	return <ProductList take={4}/>;
 }
