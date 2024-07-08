@@ -65,7 +65,7 @@ const config: Config = {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
 //eslint-disable-next-line
 export default config;
