@@ -10,7 +10,12 @@
 		"lint": "next lint --fix --dir src"
 	},
 	"dependencies": {
+		"@mdx-js/loader": "^3.0.1",
+		"@mdx-js/react": "^3.0.1",
 		"@next/font": "^13.4.19",
+		"@next/mdx": "^14.2.4",
+		"@tailwindcss/typography": "^0.5.13",
+		"@types/mdx": "^2.0.13",
 		"@types/node": "20.5.9",
 		"@types/react": "18.2.21",
 		"@types/react-dom": "18.2.7",

@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
+
+const withMDX = require("@next/mdx")();
+
 const nextConfig = {
-	experimental: { typedRoutes: true },
+	pageExtensions: ["ts", "tsx", "mdx"],
+	experimental: { typedRoutes: true, mdxRs: true },
 	images: {
 		domains: ["naszsklep-api.vercel.app"],
 	},
 };
 
-module.exports = nextConfig;
+module.exports = withMDX(nextConfig);
