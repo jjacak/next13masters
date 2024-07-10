@@ -13,3 +13,8 @@ export const getProductById = async (id: ProductData["id"]) => {
 	const product = (await productResponse.json()) as ProductData;
 	return product;
 }
+
+export const getProductsCount = async () => {
+	const products = await getProductList(-1, 0)
+	return products.length
+}

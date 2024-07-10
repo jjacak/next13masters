@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { type FC } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import { checkActiveLink } from "../utils";
 
@@ -21,7 +21,9 @@ export const ActiveLink: FC<ActiveLinkProps<string>> = ({
 	activeClassName,
 }) => {
 	const path = usePathname();
-	const isActive = checkActiveLink(path, href.toString());
+	const searchParams = useSearchParams();
+
+	const isActive = checkActiveLink(path, href.toString(), searchParams);
 	return (
 		<Link
 			href={href}
