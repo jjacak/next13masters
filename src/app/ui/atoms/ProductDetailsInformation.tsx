@@ -11,7 +11,7 @@ export const ProductDetailsInformation: FC<ProductData> = ({
 	return (
 		<div className="flex grow flex-col justify-between gap-3 p-5">
 			<div className="flex flex-col">
-				<h3 className="text-2xl font-bold ">{title}</h3>
+				<h1 className="text-2xl font-bold ">{title}</h1>
 				<p className="text-lg text-cod-gray-200">{category}</p>
 			</div>
 			<div className="flex flex-col">

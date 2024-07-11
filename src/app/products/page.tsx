@@ -1,7 +1,5 @@
-import { ProductList } from "@/ui/organisms/ProductList";
+import { redirect } from "next/navigation";
 
-const ProductsPage = async () => {
-	return <ProductList take={20} />;
-};
-
-export default ProductsPage;
+export default function ProductsIndex() {
+	redirect("/products/1");
+}

@@ -12,6 +12,7 @@ type ActiveLinkProps<T extends string> = {
 	href: Route<T> | URL;
 	className?: string;
 	activeClassName?: string;
+	pagination?: boolean;
 };
 
 export const ActiveLink: FC<ActiveLinkProps<string>> = ({
@@ -19,9 +20,11 @@ export const ActiveLink: FC<ActiveLinkProps<string>> = ({
 	href,
 	className,
 	activeClassName,
+	pagination
 }) => {
 	const path = usePathname();
-	const isActive = checkActiveLink(path, href.toString());
+
+	const isActive = checkActiveLink(path, href.toString(), pagination);
 	return (
 		<Link
 			href={href}

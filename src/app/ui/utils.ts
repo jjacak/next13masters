@@ -5,8 +5,13 @@ export const formatCurrency = (value: number) => {
 	}).format(value);
 };
 
-export const checkActiveLink = (path: string, href: string) => {
-	const pathParts = path.split("/");
+export const checkActiveLink = (path: string, href: string, pagination?: boolean) => {
+	const pathNoSearchParams = path.split("?")[0];
 	const hrefParts = href.split("/");
-	return pathParts[1] === hrefParts[1];
+	const pathParts = path.split("/");
+	return pagination ? href === pathNoSearchParams : hrefParts[1] === pathParts[1];
+};
+
+export const calculateOffset = (currentPage: number, perPage: number) => {
+	return (currentPage - 1) * perPage;
 };
