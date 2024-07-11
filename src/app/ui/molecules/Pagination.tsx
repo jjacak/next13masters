@@ -25,7 +25,7 @@ export default function Pagination({
 				const href = `/${path}/${i}` as Route;
 				pages.push(
 					<li key={i} className="px-3">
-						<ActiveLink href={href} activeClassName="font-bold">
+						<ActiveLink href={href} activeClassName="font-bold" pagination={true}>
 							{i}
 						</ActiveLink>
 					</li>,
