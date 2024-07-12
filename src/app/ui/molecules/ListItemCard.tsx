@@ -6,10 +6,10 @@ import { ListItemDescription } from "@/ui/atoms/ListItemDescription";
 
 export const ListItemCard: FC<ProductData> = (product) => {
 	return (
-		<li>
+		<li className="flex items-center justify-center">
 			<Link
 				href={`/product/${product.id}`}
-				className="flex h-full w-72 flex-col justify-self-center overflow-hidden rounded-lg bg-moon-mist-400 shadow-lg transition-all duration-200 hover:translate-y-3"
+				className="flex h-full w-60 flex-col items-center justify-self-center overflow-hidden rounded-lg bg-moon-mist-300 shadow-lg transition-all duration-200 hover:translate-y-3"
 			>
 				<ListItemCoverImage {...product} />
 				<ListItemDescription {...product} />

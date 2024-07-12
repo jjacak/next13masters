@@ -13,14 +13,14 @@ export const TopNavigation: FC = () => {
 	return (
 		<nav className="fixed left-0 right-0 top-0 z-50">
 			<div>
-				<div className="grid grid-cols-3 items-center border-b border-corduroy-400 bg-moon-mist-400  px-3 text-cod-gray-300 ">
+				<div className="grid grid-cols-3 items-center border-b border-corduroy-400 bg-moon-mist-300  px-3 text-cod-gray-300 ">
 					<Logo />
 					<MenuButton isOpen={isOpen} handleClick={toggleMenu} />
 					<MainMenuItemsList />
 				</div>
 				<div
 					className={clsx(
-						"overflow-hidden bg-moon-mist-400 transition-all duration-700",
+						"overflow-hidden bg-moon-mist-300 transition-all duration-700",
 						isOpen ? "max-h-96" : "max-h-0",
 					)}
 				>
