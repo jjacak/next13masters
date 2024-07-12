@@ -28,6 +28,7 @@ export type ButtonProps = {
 export type MenuItem = {
 	name: string;
 	path: Route<string> | URL;
+	icon?: ReactNode;
 };
 
 export type ItemCardProps = {
