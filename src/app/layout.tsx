@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body
-				className={`${manrope.variable} ${playfair_display.variable} relative min-h-screen bg-moon-mist-400 font-sans text-cod-gray pt-20`}
+				className={`${manrope.variable} ${playfair_display.variable} relative min-h-screen bg-moon-mist-300 font-sans text-cod-gray pt-20`}
 			>
 				<TopNavigation />
 				<main className="sm:py-15 mx-auto max-w-md p-10 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
