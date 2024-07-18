@@ -50,6 +50,7 @@ export const getProductsByCategorySlug = async (slug: string, count: number, off
 };
 
 export const getPagesCount = async (categorySlug?: string) => {
+	debugger;
 	const graphqlResponse = categorySlug
 		? await executeGraphql(ProductsGetCategoryCountDocument, { slug: categorySlug })
 		: await executeGraphql(ProductsGetAllCountDocument);
