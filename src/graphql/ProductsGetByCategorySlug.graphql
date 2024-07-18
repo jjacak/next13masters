@@ -1,0 +1,20 @@
+query ProductsGetByCategorySlug($slug: String!, $count:Int!, $offset:Int!) {
+	categories(where: { slug: $slug }) {
+		products (first: $count, skip: $offset){
+			id
+			name
+			description
+			rating {
+				count
+				rate
+			}
+			categories(first: 1) {
+				name
+			}
+			images(first: 1) {
+				url
+			}
+			price
+		}
+	}
+}

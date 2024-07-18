@@ -12,10 +12,13 @@ export type ProductData = {
 	longDescription: string;
 };
 
-export type Rating = {
-	rate: number;
-	count: number;
-};
+export type Rating =
+	| {
+			rate: number;
+			count: number;
+	  }
+	| null
+	| undefined;
 
 export type ButtonProps = {
 	children: ReactNode | string;

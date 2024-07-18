@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { getProductList } from "@/api/products";
 import { ListItemCard } from "@/ui/molecules/ListItemCard";
+import type { ProductData } from "@/ui/types";
 
-export const ProductList: FC<{ take?: number; offset?: number }> = async ({ take, offset = 0 }) => {
-	const products = await getProductList(take, offset);
+export const ProductList: FC<{ products: ProductData[] }> = async ({ products}) => {
+
 
 	return (
 		<ul

@@ -1,18 +1,23 @@
-import type { GraphQLResponse } from "./types";
-import { type TypedDocumentString, ProductsGetListDocument } from "@/gql/graphql";
+import {
+	ProductsGetListDocument,
+	ProductsGetByCategorySlugDocument,
+	ProductsGetAllCountDocument,
+	ProductsGetCategoryCountDocument,
+} from "@/gql/graphql";
+import { executeGraphql } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/ui/consts";
 import type { ProductData } from "@/ui/types";
 
-export const getProductList = async (take: number | undefined, offset = 0) => {
-	const graphqlResponse = await executeGraphql(ProductsGetListDocument, {});
+export const getProductList = async (count: number | undefined, offset = 0) => {
+	const graphqlResponse = await executeGraphql(ProductsGetListDocument, { count, offset });
 	return graphqlResponse.products.map((product) => ({
 		id: product.id,
 		title: product.name,
 		price: product.price,
 		description: product.description,
-		category: product.categories[0].name,
+		category: product.categories[0]?.name || "",
 		rating: product.rating,
-		image: product.images[0].url,
+		image: product.images[0]?.url || "",
 		longDescription: "",
 	}));
 };
@@ -23,31 +28,33 @@ export const getProductById = async (id: ProductData["id"]) => {
 	return product;
 };
 
-export const getPagesCount = async () => {
-	const products = await getProductList(-1, 0);
-	const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
-	return totalPages;
-};
-
-export const executeGraphql = async <TResult, TVariables>(
-	query: TypedDocumentString<TResult, TVariables>,
-	variables?: TVariables,
-): Promise<TResult> => {
-	if (!process.env.GRAPHQL_URL) {
-		throw TypeError("GRAPHQL_URL is not defined");
-	}
-	const response = await fetch(process.env.GRAPHQL_URL, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ query, variables }),
+export const getProductsByCategorySlug = async (slug: string, count: number, offset: number) => {
+	const graphqlResponse = await executeGraphql(ProductsGetByCategorySlugDocument, {
+		slug,
+		count,
+		offset,
 	});
 
-	const graphqlResponse = (await response.json()) as GraphQLResponse<TResult>;
+	return (
+		graphqlResponse.categories[0]?.products.map((product) => ({
+			id: product.id,
+			title: product.name,
+			price: product.price,
+			description: product.description,
+			category: product.categories[0]?.name || "",
+			rating: product.rating,
+			image: product.images[0]?.url || "",
+			longDescription: "",
+		})) || []
+	);
+};
 
-	if (graphqlResponse.errors) {
-		throw TypeError("GraphQL Error", { cause: graphqlResponse.errors });
-	}
-	return graphqlResponse.data;
+export const getPagesCount = async (categorySlug?: string) => {
+	const graphqlResponse = categorySlug
+		? await executeGraphql(ProductsGetCategoryCountDocument, { slug: categorySlug })
+		: await executeGraphql(ProductsGetAllCountDocument);
+	const totalPages = Math.ceil(
+		graphqlResponse.productsConnection.aggregate.count / PRODUCTS_PER_PAGE,
+	);
+	return totalPages;
 };

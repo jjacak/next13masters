@@ -11406,7 +11406,31 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
-export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+export type ProductsGetAllCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductsGetAllCountQuery = { productsConnection: { aggregate: { count: number } } };
+
+export type ProductsGetByCategorySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+  count: Scalars['Int']['input'];
+  offset: Scalars['Int']['input'];
+}>;
+
+
+export type ProductsGetByCategorySlugQuery = { categories: Array<{ products: Array<{ id: string, name: string, description: string, price: number, rating?: { count: number, rate: number } | null, categories: Array<{ name: string }>, images: Array<{ url: string }> }> }> };
+
+export type ProductsGetCategoryCountQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type ProductsGetCategoryCountQuery = { productsConnection: { aggregate: { count: number } } };
+
+export type ProductsGetListQueryVariables = Exact<{
+  count: Scalars['Int']['input'];
+  offset: Scalars['Int']['input'];
+}>;
 
 
 export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }>, rating?: { count: number, rate: number } | null }> };
@@ -11426,9 +11450,49 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const ProductsGetAllCountDocument = new TypedDocumentString(`
+    query ProductsGetAllCount {
+  productsConnection {
+    aggregate {
+      count
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetAllCountQuery, ProductsGetAllCountQueryVariables>;
+export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
+    query ProductsGetByCategorySlug($slug: String!, $count: Int!, $offset: Int!) {
+  categories(where: {slug: $slug}) {
+    products(first: $count, skip: $offset) {
+      id
+      name
+      description
+      rating {
+        count
+        rate
+      }
+      categories(first: 1) {
+        name
+      }
+      images(first: 1) {
+        url
+      }
+      price
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
+export const ProductsGetCategoryCountDocument = new TypedDocumentString(`
+    query ProductsGetCategoryCount($slug: String) {
+  productsConnection(where: {categories_some: {slug: $slug}}) {
+    aggregate {
+      count
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetCategoryCountQuery, ProductsGetCategoryCountQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList {
-  products(first: 10) {
+    query ProductsGetList($count: Int!, $offset: Int!) {
+  products(first: $count, skip: $offset) {
     id
     name
     description
