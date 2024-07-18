@@ -11418,7 +11418,7 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetByCategorySlugQuery = { categories: Array<{ products: Array<{ id: string, name: string, description: string, price: number, rating?: { count: number, rate: number } | null, categories: Array<{ name: string }>, images: Array<{ url: string }> }> }> };
+export type ProductsGetByCategorySlugQuery = { categories: Array<{ name: string, products: Array<{ id: string, name: string, description: string, price: number, rating?: { count: number, rate: number } | null, categories: Array<{ name: string }>, images: Array<{ url: string }> }> }> };
 
 export type ProductsGetCategoryCountQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -11462,6 +11462,7 @@ export const ProductsGetAllCountDocument = new TypedDocumentString(`
 export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
     query ProductsGetByCategorySlug($slug: String!, $count: Int!, $offset: Int!) {
   categories(where: {slug: $slug}) {
+    name
     products(first: $count, skip: $offset) {
       id
       name

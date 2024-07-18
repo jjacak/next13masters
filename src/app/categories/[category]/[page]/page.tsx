@@ -12,10 +12,15 @@ export default async function CategoryPage({
 	const currentPage = parseInt(page, 10) || 1;
 	const offset = calculateOffset(currentPage, PRODUCTS_PER_PAGE);
 	const totalPages = await getPagesCount(category);
-	const products = await getProductsByCategorySlug(category, PRODUCTS_PER_PAGE, offset);
+	const { categoryName, products } = await getProductsByCategorySlug(
+		category,
+		PRODUCTS_PER_PAGE,
+		offset,
+	);
 
 	return (
 		<article>
+			<h1>{categoryName}</h1>
 			<ProductList products={products} />
 			<Pagination
 				totalPages={totalPages}

@@ -35,18 +35,19 @@ export const getProductsByCategorySlug = async (slug: string, count: number, off
 		offset,
 	});
 
-	return (
-		graphqlResponse.categories[0]?.products.map((product) => ({
-			id: product.id,
-			title: product.name,
-			price: product.price,
-			description: product.description,
-			category: product.categories[0]?.name || "",
-			rating: product.rating,
-			image: product.images[0]?.url || "",
-			longDescription: "",
-		})) || []
-	);
+	const categoryName = graphqlResponse.categories[0]?.name || "";
+	const products = graphqlResponse.categories[0]?.products.map((product) => ({
+		id: product.id,
+		title: product.name,
+		price: product.price,
+		description: product.description,
+		category: product.categories[0]?.name || "",
+		rating: product.rating,
+		image: product.images[0]?.url || "",
+		longDescription: "",
+	})) || []
+
+	return ({categoryName, products});
 };
 
 export const getPagesCount = async (categorySlug?: string) => {
