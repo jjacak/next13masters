@@ -11406,6 +11406,13 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type ProductGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ProductGetByIdQuery = { products: Array<{ id: string, name: string, price: number, description: string, categories: Array<{ name: string }>, rating?: { rate: number, count: number } | null, images: Array<{ url: string }> }> };
+
 export type ProductsGetAllCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -11450,6 +11457,26 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const ProductGetByIdDocument = new TypedDocumentString(`
+    query ProductGetById($id: ID!) {
+  products(where: {id: $id}) {
+    id
+    name
+    price
+    description
+    categories {
+      name
+    }
+    rating {
+      rate
+      count
+    }
+    images {
+      url
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
 export const ProductsGetAllCountDocument = new TypedDocumentString(`
     query ProductsGetAllCount {
   productsConnection {

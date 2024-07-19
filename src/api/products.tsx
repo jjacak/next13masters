@@ -3,6 +3,7 @@ import {
 	ProductsGetByCategorySlugDocument,
 	ProductsGetAllCountDocument,
 	ProductsGetCategoryCountDocument,
+	ProductGetByIdDocument
 } from "@/gql/graphql";
 import { executeGraphql } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/ui/consts";
@@ -23,9 +24,25 @@ export const getProductList = async (count: number | undefined, offset = 0) => {
 };
 
 export const getProductById = async (id: ProductData["id"]) => {
-	const productResponse = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
-	const product = (await productResponse.json()) as ProductData;
-	return product;
+	const productResponse = await executeGraphql(ProductGetByIdDocument, { id });
+	const product = productResponse.products[0]
+	if(!product) {
+		throw new Error(`Product with id ${id} not found`);
+	
+	}
+
+	return {
+		id: product.id,
+		title: product.name,
+		price: product.price,
+		description: product.description,
+		category: product.categories[0]?.name || "",
+		rating: product.rating,
+		image: product.images[0]?.url || "",
+		longDescription: "",
+	}
+
+
 };
 
 export const getProductsByCategorySlug = async (slug: string, count: number, offset: number) => {
