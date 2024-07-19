@@ -3,46 +3,23 @@ import {
 	ProductsGetByCategorySlugDocument,
 	ProductsGetAllCountDocument,
 	ProductsGetCategoryCountDocument,
-	ProductGetByIdDocument
+	ProductGetByIdDocument,
 } from "@/gql/graphql";
 import { executeGraphql } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/ui/consts";
-import type { ProductData } from "@/ui/types";
 
 export const getProductList = async (count: number | undefined, offset = 0) => {
 	const graphqlResponse = await executeGraphql(ProductsGetListDocument, { count, offset });
-	return graphqlResponse.products.map((product) => ({
-		id: product.id,
-		title: product.name,
-		price: product.price,
-		description: product.description,
-		category: product.categories[0]?.name || "",
-		rating: product.rating,
-		image: product.images[0]?.url || "",
-		longDescription: "",
-	}));
+	return graphqlResponse.products;
 };
 
-export const getProductById = async (id: ProductData["id"]) => {
+export const getProductById = async (id: string) => {
 	const productResponse = await executeGraphql(ProductGetByIdDocument, { id });
-	const product = productResponse.products[0]
-	if(!product) {
+	const product = productResponse.products[0];
+	if (!product) {
 		throw new Error(`Product with id ${id} not found`);
-	
 	}
-
-	return {
-		id: product.id,
-		title: product.name,
-		price: product.price,
-		description: product.description,
-		category: product.categories[0]?.name || "",
-		rating: product.rating,
-		image: product.images[0]?.url || "",
-		longDescription: "",
-	}
-
-
+	return product;
 };
 
 export const getProductsByCategorySlug = async (slug: string, count: number, offset: number) => {
@@ -53,18 +30,8 @@ export const getProductsByCategorySlug = async (slug: string, count: number, off
 	});
 
 	const categoryName = graphqlResponse.categories[0]?.name || "";
-	const products = graphqlResponse.categories[0]?.products.map((product) => ({
-		id: product.id,
-		title: product.name,
-		price: product.price,
-		description: product.description,
-		category: product.categories[0]?.name || "",
-		rating: product.rating,
-		image: product.images[0]?.url || "",
-		longDescription: "",
-	})) || []
-
-	return ({categoryName, products});
+	const products = graphqlResponse.categories[0]?.products || [];
+	return { categoryName, products };
 };
 
 export const getPagesCount = async (categorySlug?: string) => {

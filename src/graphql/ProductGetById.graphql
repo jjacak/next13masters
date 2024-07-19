@@ -1,19 +1,5 @@
-  query ProductGetById ($id:ID!){
-   products (where:{id:$id}){
-    id
-    name
-    price
-    description
-    categories{
-      name
-    }
-    rating{
-      rate
-      count
-    }
-    images{
-      url
-    }
-    
-  }
-    }
+query ProductGetById($id: ID!) {
+	products(where: { id: $id }) {
+		...ProductListItem
+	}
+}

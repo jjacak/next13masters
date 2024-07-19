@@ -1,24 +1,6 @@
 import type { ReactNode } from "react";
 import type { Route } from "next";
 
-export type ProductData = {
-	id: string;
-	title: string;
-	price: number;
-	description: string;
-	category: string;
-	rating: Rating;
-	image: string;
-	longDescription: string;
-};
-
-export type Rating =
-	| {
-			rate: number;
-			count: number;
-	  }
-	| null
-	| undefined;
 
 export type ButtonProps = {
 	children: ReactNode | string;
@@ -34,6 +16,3 @@ export type MenuItem = {
 	icon?: ReactNode;
 };
 
-export type ItemCardProps = {
-	products: ProductData[];
-};

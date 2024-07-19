@@ -11411,7 +11411,9 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { products: Array<{ id: string, name: string, price: number, description: string, categories: Array<{ name: string }>, rating?: { rate: number, count: number } | null, images: Array<{ url: string }> }> };
+export type ProductGetByIdQuery = { products: Array<{ id: string, name: string, description: string, price: number, rating?: { count: number, rate: number } | null, categories: Array<{ name: string }>, images: Array<{ url: string }> }> };
+
+export type ProductListItemFragment = { id: string, name: string, description: string, price: number, rating?: { count: number, rate: number } | null, categories: Array<{ name: string }>, images: Array<{ url: string }> };
 
 export type ProductsGetAllCountQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -11440,7 +11442,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }>, rating?: { count: number, rate: number } | null }> };
+export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, price: number, rating?: { count: number, rate: number } | null, categories: Array<{ name: string }>, images: Array<{ url: string }> }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -11456,27 +11458,46 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
+export const ProductListItemFragmentDoc = new TypedDocumentString(`
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  rating {
+    count
+    rate
+  }
+  categories(first: 1) {
+    name
+  }
+  images(first: 1) {
+    url
+  }
+  price
+}
+    `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   products(where: {id: $id}) {
-    id
-    name
-    price
-    description
-    categories {
-      name
-    }
-    rating {
-      rate
-      count
-    }
-    images {
-      url
-    }
+    ...ProductListItem
   }
 }
-    `) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  rating {
+    count
+    rate
+  }
+  categories(first: 1) {
+    name
+  }
+  images(first: 1) {
+    url
+  }
+  price
+}`) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
 export const ProductsGetAllCountDocument = new TypedDocumentString(`
     query ProductsGetAllCount {
   productsConnection {
@@ -11491,24 +11512,26 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
   categories(where: {slug: $slug}) {
     name
     products(first: $count, skip: $offset) {
-      id
-      name
-      description
-      rating {
-        count
-        rate
-      }
-      categories(first: 1) {
-        name
-      }
-      images(first: 1) {
-        url
-      }
-      price
+      ...ProductListItem
     }
   }
 }
-    `) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  rating {
+    count
+    rate
+  }
+  categories(first: 1) {
+    name
+  }
+  images(first: 1) {
+    url
+  }
+  price
+}`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
 export const ProductsGetCategoryCountDocument = new TypedDocumentString(`
     query ProductsGetCategoryCount($slug: String) {
   productsConnection(where: {categories_some: {slug: $slug}}) {
@@ -11521,20 +11544,22 @@ export const ProductsGetCategoryCountDocument = new TypedDocumentString(`
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($count: Int!, $offset: Int!) {
   products(first: $count, skip: $offset) {
-    id
-    name
-    description
-    categories(first: 1) {
-      name
-    }
-    images(first: 1) {
-      url
-    }
-    price
-    rating {
-      count
-      rate
-    }
+    ...ProductListItem
   }
 }
-    `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+    fragment ProductListItem on Product {
+  id
+  name
+  description
+  rating {
+    count
+    rate
+  }
+  categories(first: 1) {
+    name
+  }
+  images(first: 1) {
+    url
+  }
+  price
+}`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
