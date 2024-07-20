@@ -8,7 +8,7 @@ import {
 import { executeGraphql } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/ui/consts";
 
-export const getProductList = async (count: number | undefined, offset = 0) => {
+export const getProductList = async (count: number, offset = 0) => {
 	const graphqlResponse = await executeGraphql(ProductsGetListDocument, { count, offset });
 	return graphqlResponse.products;
 };
