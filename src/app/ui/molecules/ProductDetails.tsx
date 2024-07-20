@@ -7,8 +7,8 @@ export const ProductDetails: FC<ProductListItemFragment> = (product) => {
 	return (
 		<article className="flex flex-col md:flex-row">
 			<ProductDetailsImage
-				title={product.name}
-				image={product.images[0]?.url || "/img/placeholder.jpg"}
+				name={product.name}
+				images={product.images}
 			/>
 			<ProductDetailsInformation {...product} />
 		</article>
