@@ -1,5 +1,3 @@
-"use client";
-
 // import { useState } from "react";
 // import clsx from "clsx";
 import { MainMenuItemsList } from "../molecules/MainMenuItemsList";
@@ -11,9 +9,9 @@ export const TopNavigation = () => {
 	// const [isOpen, setIsOpen] = useState(false);
 	// const toggleMenu = () => setIsOpen((prev) => !prev);
 	return (
-		<nav className="fixed left-0 right-0 top-0 z-50">
+		<nav className="fixed left-0 right-0 top-0 z-50 ">
 			<div>
-				<div className="grid grid-cols-2 items-center border-b border-corduroy-400 bg-moon-mist-300  px-3 text-cod-gray-300 ">
+				<div className="flex items-center justify-between overflow-x-auto border-b border-corduroy-400  bg-moon-mist-300 px-3 text-cod-gray-300">
 					<Logo />
 					{/* <MenuButton isOpen={isOpen} handleClick={toggleMenu} /> */}
 					<MainMenuItemsList />
