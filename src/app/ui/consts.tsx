@@ -13,4 +13,4 @@ export const MAIN_MENU_ITEMS: MenuItem[] = [
 	{ name: "All", path: "/products" },
 ];
 
-export const PRODUCTS_PER_PAGE = 9;
+export const PRODUCTS_PER_PAGE = 4;
