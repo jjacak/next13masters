@@ -1,10 +1,10 @@
 import { type FC } from "react";
 import Link from "next/link";
-import type { ProductData } from "@/ui/types";
 import { ListItemCoverImage } from "@/ui/atoms/ListItemCoverImage";
 import { ListItemDescription } from "@/ui/atoms/ListItemDescription";
+import type { ProductListItemFragment } from "@/gql/graphql";
 
-export const ListItemCard: FC<ProductData> = (product) => {
+export const ListItemCard: FC<ProductListItemFragment> = (product) => {
 	return (
 		<li className="flex items-center justify-center">
 			<Link

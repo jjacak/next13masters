@@ -1,9 +1,11 @@
 import type { FC } from "react";
-import { getProductList } from "@/api/products";
 import { ListItemCard } from "@/ui/molecules/ListItemCard";
+import type { ProductListItemFragment } from "@/gql/graphql";
 
-export const ProductList: FC<{ take?: number; offset?: number }> = async ({ take, offset = 0 }) => {
-	const products = await getProductList(take, offset);
+export const ProductList: FC<{ products: ProductListItemFragment[] }> = async ({ products }) => {
+	if (!products.length) {
+		return <p data-testid="no-products">No products found</p>;
+	}
 
 	return (
 		<ul

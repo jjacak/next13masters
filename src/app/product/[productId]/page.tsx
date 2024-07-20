@@ -9,7 +9,7 @@ export const generateMetadata = async ({
 	params: { productId: string };
 }): Promise<Metadata> => {
 	const product = await getProductById(productId);
-	const title = `${product.title} - Sklep internetowy`;
+	const title = `${product.name} - Sklep internetowy`;
 	return {
 		title: title,
 		description: product.description,
@@ -18,15 +18,15 @@ export const generateMetadata = async ({
 			description: product.description,
 			images: [
 				{
-					url: product.image,
-					alt: product.title,
+					url: product.images[0]?.url || "/img/placeholder.jpg",
+					alt: product.name,
 				},
 			],
 		},
 		twitter: {
 			title: title,
 			description: product.description,
-			images: [product.image, product.title],
+			images: [product.images[0]?.url || "/img/placeholder.jpg", product.name],
 		},
 	};
 };

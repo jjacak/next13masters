@@ -6,7 +6,7 @@ const nextConfig = {
 	pageExtensions: ["ts", "tsx", "mdx"],
 	experimental: { typedRoutes: true, mdxRs: true },
 	images: {
-		domains: ["naszsklep-api.vercel.app"],
+		domains: ["naszsklep-api.vercel.app", "media.graphassets.com"],
 	},
 };
 

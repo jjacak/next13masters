@@ -6,10 +6,13 @@ export const formatCurrency = (value: number) => {
 };
 
 export const checkActiveLink = (path: string, href: string, pagination?: boolean) => {
-	const pathNoSearchParams = path.split("?")[0];
-	const hrefParts = href.split("/");
-	const pathParts = path.split("/");
-	return pagination ? href === pathNoSearchParams : hrefParts[1] === pathParts[1];
+	const pathNoSearchParams = path.split("?")[0] || "";
+	const pathParts = pathNoSearchParams.split("/");
+	const pathNoPagination = !isNaN(parseInt(pathParts.at(-1) || ""))
+		? pathParts.slice(0, -1).join("/")
+		: pathParts.join("/");
+
+	return pagination ? href === pathNoSearchParams : href === pathNoPagination;
 };
 
 export const calculateOffset = (currentPage: number, perPage: number) => {
