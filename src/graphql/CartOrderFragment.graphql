@@ -1,0 +1,4 @@
+fragment Cart on Order {
+	id
+    total    
+}

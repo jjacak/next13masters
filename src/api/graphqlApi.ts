@@ -1,5 +1,5 @@
 import type { GraphQLResponse } from "./types";
-import {type TypedDocumentString,} from "@/gql/graphql";
+import { type TypedDocumentString } from "@/gql/graphql";
 
 export const executeGraphql = async <TResult, TVariables>(
 	query: TypedDocumentString<TResult, TVariables>,
@@ -12,6 +12,7 @@ export const executeGraphql = async <TResult, TVariables>(
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			"Authorization": `Bearer ${process.env.GRAPHQL_TOKEN}`,
 		},
 		body: JSON.stringify({ query, variables }),
 	});
@@ -19,6 +20,7 @@ export const executeGraphql = async <TResult, TVariables>(
 	const graphqlResponse = (await response.json()) as GraphQLResponse<TResult>;
 
 	if (graphqlResponse.errors) {
+		console.log("GraphQL Error", graphqlResponse);
 		throw TypeError("GraphQL Error", { cause: graphqlResponse.errors });
 	}
 	return graphqlResponse.data;
