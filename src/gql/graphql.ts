@@ -12711,16 +12711,16 @@ export type CartAddProductMutation = { createOrderItem?: { id: string } | null }
 export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartCreateMutation = { createOrder?: { id: string, total: number } | null };
+export type CartCreateMutation = { createOrder?: { id: string, total: number, orderItems: Array<{ quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
 
 export type CartGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type CartGetByIdQuery = { order?: { id: string, total: number } | null };
+export type CartGetByIdQuery = { order?: { id: string, total: number, orderItems: Array<{ quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
 
-export type CartFragment = { id: string, total: number };
+export type CartFragment = { id: string, total: number, orderItems: Array<{ quantity: number, product?: { id: string, name: string, price: number } | null }> };
 
 export type CategoriesGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -12783,6 +12783,14 @@ export const CartFragmentDoc = new TypedDocumentString(`
     fragment Cart on Order {
   id
   total
+  orderItems {
+    product {
+      id
+      name
+      price
+    }
+    quantity
+  }
 }
     `, {"fragmentName":"Cart"}) as unknown as TypedDocumentString<CartFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
@@ -12821,6 +12829,14 @@ export const CartCreateDocument = new TypedDocumentString(`
     fragment Cart on Order {
   id
   total
+  orderItems {
+    product {
+      id
+      name
+      price
+    }
+    quantity
+  }
 }`) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
 export const CartGetByIdDocument = new TypedDocumentString(`
     query CartGetById($id: ID!) {
@@ -12831,6 +12847,14 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     fragment Cart on Order {
   id
   total
+  orderItems {
+    product {
+      id
+      name
+      price
+    }
+    quantity
+  }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const CategoriesGetAllDocument = new TypedDocumentString(`
     query CategoriesGetAll {

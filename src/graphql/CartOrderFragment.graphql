@@ -1,4 +1,12 @@
 fragment Cart on Order {
 	id
-    total    
+	total
+	orderItems {
+		product {
+			id
+			name
+			price
+		}
+		quantity
+	}
 }
