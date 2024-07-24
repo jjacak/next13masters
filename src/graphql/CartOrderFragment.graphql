@@ -2,6 +2,7 @@ fragment Cart on Order {
 	id
 	total
 	orderItems {
+		id
 		product {
 			id
 			name
