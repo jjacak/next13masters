@@ -5,20 +5,41 @@ import {
 	CartAddProductDocument,
 	ProductGetByIdDocument,
 } from "@/gql/graphql";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+
+export const getCartFromCookie = async () => {
+	const cartId = cookies().get("cartId")?.value;
+	if (cartId) {
+		const { order: cart } = await executeGraphql({
+			query: CartGetByIdDocument,
+			variables: {
+				id: cartId,
+			},
+		});
+		return cart;
+	}
+};
 
 const createCart = async () => {
 	"use server";
-	const { createOrder: newCart } = await executeGraphql(CartCreateDocument, {});
+	const { createOrder: newCart } = await executeGraphql({ query: CartCreateDocument });
 	if (!newCart) {
 		throw new Error("Failed to create cart");
 	}
-	cookies().set("cartId", newCart.id);
+	cookies().set("cartId", newCart.id, {
+		maxAge: 60 * 60 * 24 * 365,
+		expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+		httpOnly: true,
+		// secure: true,
+		sameSite: "lax",
+		priority: "low",
+	});
 	return newCart;
 };
 const getCartById = async (cartId: string) => {
 	"use server";
-	const cart = await executeGraphql(CartGetByIdDocument, { id: cartId });
+	const cart = await executeGraphql({ query: CartGetByIdDocument, variables: { id: cartId } });
 	return cart;
 };
 const getOrCreateCart = async () => {
@@ -36,20 +57,29 @@ const getOrCreateCart = async () => {
 
 const addToCart = async (cartId: string, productId: string, quantity: number = 1) => {
 	"use server";
-	const { order } = await executeGraphql(CartGetByIdDocument, { id: cartId });
+	const { order } = await executeGraphql({ query: CartGetByIdDocument, variables: { id: cartId } });
 	const currentTotal = order?.total || 0;
-	const { products } = await executeGraphql(ProductGetByIdDocument, { id: productId });
+	const { products } = await executeGraphql({
+		query: ProductGetByIdDocument,
+		variables: { id: productId },
+	});
 	const price = products[0]?.price;
 	if (!price) {
 		throw new Error("Failed to add product to cart");
 	}
 	const total = currentTotal + price * quantity;
 
-	const { createOrderItem: orderId } = await executeGraphql(CartAddProductDocument, {
-		orderId: cartId,
-		productId,
-		total,
-		quantity,
+	const { createOrderItem: orderId } = await executeGraphql({
+		query: CartAddProductDocument,
+		variables: {
+			orderId: cartId,
+			productId,
+			total,
+			quantity,
+		},
+		next: {
+			tags: ["cart"],
+		},
 	});
 	if (!orderId) {
 		throw new Error("Failed to add product to cart");
@@ -60,13 +90,6 @@ const addToCart = async (cartId: string, productId: string, quantity: number = 1
 export const addToCartAction = async (productId: string) => {
 	"use server";
 	const cart = await getOrCreateCart();
-	cookies().set("cartId", cart.id, {
-		maxAge: 60 * 60 * 24 * 365,
-		expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
-		httpOnly: true,
-		// secure: true,
-		sameSite: "lax",
-		priority: "low",
-	});
 	await addToCart(cart.id, productId);
+	revalidateTag("cart");
 };

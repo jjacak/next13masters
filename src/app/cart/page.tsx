@@ -12,8 +12,11 @@ export default async function CartPage() {
 		redirect("/");
 	}
 
-	const { order: cart } = await executeGraphql(CartGetByIdDocument, {
-		id: cartId,
+	const { order: cart } = await executeGraphql({
+		query: CartGetByIdDocument,
+		variables: {
+			id: cartId,
+		},
 	});
 
 	if (!cart) {
