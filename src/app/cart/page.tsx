@@ -4,6 +4,7 @@ import { executeGraphql } from "@/api/graphqlApi";
 import { CartGetByIdDocument } from "@/gql/graphql";
 import { formatCurrency } from "@/ui/utils";
 import { ProductQuantityForm } from "@/ui/molecules/ProductQuantityForm";
+import { RemoveCartItemButton } from "@/ui/atoms/RemoveCartItemButton";
 
 export default async function CartPage() {
 	const cartId = cookies().get("cartId")?.value;
@@ -46,6 +47,9 @@ export default async function CartPage() {
 									<ProductQuantityForm quantity={item.quantity} itemId={item.id} />
 								</td>
 								<td className="px-5 py-2">{formatCurrency(item.product.price / 100)}</td>
+								<td className="px-5 py-2">
+									<RemoveCartItemButton itemId={item.id} />
+								</td>
 							</tr>
 						);
 					})}

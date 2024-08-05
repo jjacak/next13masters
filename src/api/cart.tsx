@@ -23,7 +23,12 @@ export const getCartFromCookie = async () => {
 
 const createCart = async () => {
 	"use server";
-	const { createOrder: newCart } = await executeGraphql({ query: CartCreateDocument });
+	const { createOrder: newCart } = await executeGraphql({
+		query: CartCreateDocument,
+		next: {
+			tags: ["cart"],
+		},
+	});
 	if (!newCart) {
 		throw new Error("Failed to create cart");
 	}
@@ -39,7 +44,13 @@ const createCart = async () => {
 };
 const getCartById = async (cartId: string) => {
 	"use server";
-	const cart = await executeGraphql({ query: CartGetByIdDocument, variables: { id: cartId } });
+	const cart = await executeGraphql({
+		query: CartGetByIdDocument,
+		variables: { id: cartId },
+		next: {
+			tags: ["cart"],
+		},
+	});
 	return cart;
 };
 const getOrCreateCart = async () => {
@@ -57,11 +68,20 @@ const getOrCreateCart = async () => {
 
 const addToCart = async (cartId: string, productId: string, quantity: number = 1) => {
 	"use server";
-	const { order } = await executeGraphql({ query: CartGetByIdDocument, variables: { id: cartId } });
+	const { order } = await executeGraphql({
+		query: CartGetByIdDocument,
+		variables: { id: cartId },
+		next: {
+			tags: ["cart"],
+		},
+	});
 	const currentTotal = order?.total || 0;
 	const { products } = await executeGraphql({
 		query: ProductGetByIdDocument,
 		variables: { id: productId },
+		next: {
+			tags: ["cart"],
+		},
 	});
 	const price = products[0]?.price;
 	if (!price) {

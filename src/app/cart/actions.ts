@@ -1,7 +1,7 @@
 "use server";
 
 import { executeGraphql } from "@/api/graphqlApi";
-import { CartChangeItemQuantityDocument } from "@/gql/graphql";
+import { CartChangeItemQuantityDocument, CartRemoveItemDocument } from "@/gql/graphql";
 import { revalidateTag } from "next/cache";
 
 export const changeQuantityAction = async (itemId: string, quantity: number) => {
@@ -18,4 +18,21 @@ export const changeQuantityAction = async (itemId: string, quantity: number) => 
 	revalidateTag("cart");
 
 	return returnedId;
+};
+
+export const removeCartItem = async (itemId: string) => {
+	const { deleteOrderItem: removedId } = await executeGraphql({
+		query: CartRemoveItemDocument,
+		variables: {
+			itemId,
+		},
+		next: {
+			tags: ["cart"],
+		},
+	});
+	if (!removedId) {
+		throw new Error("Failed to remove item from cart");
+	}
+	revalidateTag("cart");
+	return removedId;
 };
