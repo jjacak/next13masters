@@ -12,6 +12,9 @@ export const getProductList = async (count: number, offset = 0) => {
 	const graphqlResponse = await executeGraphql({
 		query: ProductsGetListDocument,
 		variables: { count, offset },
+		next: {
+			revalidate: 30,
+		},
 	});
 	return graphqlResponse.products;
 };

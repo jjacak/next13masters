@@ -16,6 +16,7 @@ export const getCartFromCookie = async () => {
 			variables: {
 				id: cartId,
 			},
+			cache: "no-store",
 		});
 		return cart;
 	}

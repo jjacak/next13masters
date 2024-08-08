@@ -5,8 +5,10 @@ import { CartGetByIdDocument } from "@/gql/graphql";
 import { formatCurrency } from "@/ui/utils";
 import { ProductQuantityForm } from "@/ui/molecules/ProductQuantityForm";
 import { RemoveCartItemButton } from "@/ui/atoms/RemoveCartItemButton";
+import { unstable_noStore } from "next/cache";
 
 export default async function CartPage() {
+	unstable_noStore()
 	const cartId = cookies().get("cartId")?.value;
 
 	if (!cartId) {
