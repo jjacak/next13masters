@@ -1,8 +1,11 @@
 import { ShoppingBag } from "lucide-react";
 import { ActiveLink } from "./ActiveLink";
+import { getCartFromCookie } from "@/api/cart";
 
-export default function CartButton() {
-	const cartCount = 0;
+export default async function CartButton() {
+	const cart = await getCartFromCookie();
+	const quantity = cart?.orderItems.reduce((acc, item) => acc + item.quantity, 0) || 0;
+
 	return (
 		<ActiveLink
 			href="/cart"
@@ -11,7 +14,7 @@ export default function CartButton() {
 			aria-label="Cart"
 		>
 			<ShoppingBag size={20} />
-			<div className="mt-3">{cartCount}</div>
+			<div className="mt-3">{quantity}</div>
 		</ActiveLink>
 	);
 }
