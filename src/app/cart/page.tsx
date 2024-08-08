@@ -8,7 +8,7 @@ import { RemoveCartItemButton } from "@/ui/atoms/RemoveCartItemButton";
 import { unstable_noStore } from "next/cache";
 
 export default async function CartPage() {
-	unstable_noStore()
+	unstable_noStore();
 	const cartId = cookies().get("cartId")?.value;
 
 	if (!cartId) {
@@ -64,6 +64,9 @@ export default async function CartPage() {
 					</tr>
 				</tfoot>
 			</table>
+			<button className="mt-10 rounded bg-corduroy-500 px-5 py-2 text-white">
+				Proceed to checkout
+			</button>
 		</div>
 	);
 }
