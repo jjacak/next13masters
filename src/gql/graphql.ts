@@ -737,6 +737,843 @@ export type BatchPayload = {
   count: Scalars['Long']['output'];
 };
 
+export type Cart = Entity & Node & {
+  cartItems: Array<CartItem>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Cart>;
+  /** List of Cart versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type CartCartItemsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<CartItemOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CartItemWhereInput>;
+};
+
+
+export type CartCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type CartDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type CartHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type CartPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type CartScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type CartUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type CartConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: CartWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type CartConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<CartEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type CartCreateInput = {
+  cartItems?: InputMaybe<CartItemCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type CartCreateManyInlineInput = {
+  /** Connect multiple existing Cart documents */
+  connect?: InputMaybe<Array<CartWhereUniqueInput>>;
+  /** Create and connect multiple existing Cart documents */
+  create?: InputMaybe<Array<CartCreateInput>>;
+};
+
+export type CartCreateOneInlineInput = {
+  /** Connect one existing Cart document */
+  connect?: InputMaybe<CartWhereUniqueInput>;
+  /** Create and connect one Cart document */
+  create?: InputMaybe<CartCreateInput>;
+};
+
+/** An edge in a connection. */
+export type CartEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Cart;
+};
+
+export type CartItem = Entity & Node & {
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<CartItem>;
+  /** List of CartItem versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  product?: Maybe<Product>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  quantity: Scalars['Int']['output'];
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type CartItemCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type CartItemDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type CartItemHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type CartItemProductArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type CartItemPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type CartItemScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type CartItemUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type CartItemConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: CartItemWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type CartItemConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<CartItemEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type CartItemCreateInput = {
+  clyx88crz02ms07mv27wzdu3y?: InputMaybe<CartCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  product?: InputMaybe<ProductCreateOneInlineInput>;
+  quantity: Scalars['Int']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type CartItemCreateManyInlineInput = {
+  /** Connect multiple existing CartItem documents */
+  connect?: InputMaybe<Array<CartItemWhereUniqueInput>>;
+  /** Create and connect multiple existing CartItem documents */
+  create?: InputMaybe<Array<CartItemCreateInput>>;
+};
+
+export type CartItemCreateOneInlineInput = {
+  /** Connect one existing CartItem document */
+  connect?: InputMaybe<CartItemWhereUniqueInput>;
+  /** Create and connect one CartItem document */
+  create?: InputMaybe<CartItemCreateInput>;
+};
+
+/** An edge in a connection. */
+export type CartItemEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: CartItem;
+};
+
+/** Identifies documents */
+export type CartItemManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CartItemWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CartItemWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CartItemWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<CartItemWhereStageInput>;
+  documentInStages_none?: InputMaybe<CartItemWhereStageInput>;
+  documentInStages_some?: InputMaybe<CartItemWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  product?: InputMaybe<ProductWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  quantity_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  quantity_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  quantity_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  quantity_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  quantity_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  quantity_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  quantity_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export type CartItemOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'quantity_ASC'
+  | 'quantity_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
+
+export type CartItemUpdateInput = {
+  clyx88crz02ms07mv27wzdu3y?: InputMaybe<CartUpdateManyInlineInput>;
+  product?: InputMaybe<ProductUpdateOneInlineInput>;
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type CartItemUpdateManyInlineInput = {
+  /** Connect multiple existing CartItem documents */
+  connect?: InputMaybe<Array<CartItemConnectInput>>;
+  /** Create and connect multiple CartItem documents */
+  create?: InputMaybe<Array<CartItemCreateInput>>;
+  /** Delete multiple CartItem documents */
+  delete?: InputMaybe<Array<CartItemWhereUniqueInput>>;
+  /** Disconnect multiple CartItem documents */
+  disconnect?: InputMaybe<Array<CartItemWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing CartItem documents */
+  set?: InputMaybe<Array<CartItemWhereUniqueInput>>;
+  /** Update multiple CartItem documents */
+  update?: InputMaybe<Array<CartItemUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple CartItem documents */
+  upsert?: InputMaybe<Array<CartItemUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type CartItemUpdateManyInput = {
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type CartItemUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: CartItemUpdateManyInput;
+  /** Document search */
+  where: CartItemWhereInput;
+};
+
+export type CartItemUpdateOneInlineInput = {
+  /** Connect existing CartItem document */
+  connect?: InputMaybe<CartItemWhereUniqueInput>;
+  /** Create and connect one CartItem document */
+  create?: InputMaybe<CartItemCreateInput>;
+  /** Delete currently connected CartItem document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected CartItem document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single CartItem document */
+  update?: InputMaybe<CartItemUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single CartItem document */
+  upsert?: InputMaybe<CartItemUpsertWithNestedWhereUniqueInput>;
+};
+
+export type CartItemUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: CartItemUpdateInput;
+  /** Unique document search */
+  where: CartItemWhereUniqueInput;
+};
+
+export type CartItemUpsertInput = {
+  /** Create document if it didn't exist */
+  create: CartItemCreateInput;
+  /** Update document if it exists */
+  update: CartItemUpdateInput;
+};
+
+export type CartItemUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: CartItemUpsertInput;
+  /** Unique document search */
+  where: CartItemWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type CartItemWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type CartItemWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CartItemWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CartItemWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CartItemWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<CartItemWhereStageInput>;
+  documentInStages_none?: InputMaybe<CartItemWhereStageInput>;
+  documentInStages_some?: InputMaybe<CartItemWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  product?: InputMaybe<ProductWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  quantity_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  quantity_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  quantity_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  quantity_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  quantity_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  quantity_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  quantity_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type CartItemWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CartItemWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CartItemWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CartItemWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<CartItemWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References CartItem record uniquely */
+export type CartItemWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** Identifies documents */
+export type CartManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CartWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CartWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CartWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  cartItems_every?: InputMaybe<CartItemWhereInput>;
+  cartItems_none?: InputMaybe<CartItemWhereInput>;
+  cartItems_some?: InputMaybe<CartItemWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<CartWhereStageInput>;
+  documentInStages_none?: InputMaybe<CartWhereStageInput>;
+  documentInStages_some?: InputMaybe<CartWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export type CartOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
+
+export type CartUpdateInput = {
+  cartItems?: InputMaybe<CartItemUpdateManyInlineInput>;
+};
+
+export type CartUpdateManyInlineInput = {
+  /** Connect multiple existing Cart documents */
+  connect?: InputMaybe<Array<CartConnectInput>>;
+  /** Create and connect multiple Cart documents */
+  create?: InputMaybe<Array<CartCreateInput>>;
+  /** Delete multiple Cart documents */
+  delete?: InputMaybe<Array<CartWhereUniqueInput>>;
+  /** Disconnect multiple Cart documents */
+  disconnect?: InputMaybe<Array<CartWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Cart documents */
+  set?: InputMaybe<Array<CartWhereUniqueInput>>;
+  /** Update multiple Cart documents */
+  update?: InputMaybe<Array<CartUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Cart documents */
+  upsert?: InputMaybe<Array<CartUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type CartUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CartUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: CartUpdateManyInput;
+  /** Document search */
+  where: CartWhereInput;
+};
+
+export type CartUpdateOneInlineInput = {
+  /** Connect existing Cart document */
+  connect?: InputMaybe<CartWhereUniqueInput>;
+  /** Create and connect one Cart document */
+  create?: InputMaybe<CartCreateInput>;
+  /** Delete currently connected Cart document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected Cart document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Cart document */
+  update?: InputMaybe<CartUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Cart document */
+  upsert?: InputMaybe<CartUpsertWithNestedWhereUniqueInput>;
+};
+
+export type CartUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: CartUpdateInput;
+  /** Unique document search */
+  where: CartWhereUniqueInput;
+};
+
+export type CartUpsertInput = {
+  /** Create document if it didn't exist */
+  create: CartCreateInput;
+  /** Update document if it exists */
+  update: CartUpdateInput;
+};
+
+export type CartUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: CartUpsertInput;
+  /** Unique document search */
+  where: CartWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type CartWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type CartWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CartWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CartWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CartWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  cartItems_every?: InputMaybe<CartItemWhereInput>;
+  cartItems_none?: InputMaybe<CartItemWhereInput>;
+  cartItems_some?: InputMaybe<CartItemWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<CartWhereStageInput>;
+  documentInStages_none?: InputMaybe<CartWhereStageInput>;
+  documentInStages_some?: InputMaybe<CartWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type CartWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<CartWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<CartWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<CartWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<CartWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Cart record uniquely */
+export type CartWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 /** Category of products, e.g. Menswear. */
 export type Category = Entity & Node & {
   /** The time the document was created */
@@ -2495,6 +3332,8 @@ export type Entity = {
 export type EntityTypeName =
   /** Asset system model */
   | 'Asset'
+  | 'Cart'
+  | 'CartItem'
   /** Category of products, e.g. Menswear. */
   | 'Category'
   /** Collection of products, e.g. Winter Sale. */
@@ -2581,6 +3420,10 @@ export type Mutation = {
    * @deprecated Asset mutations will be overhauled soon
    */
   createAsset?: Maybe<Asset>;
+  /** Create one cart */
+  createCart?: Maybe<Cart>;
+  /** Create one cartItem */
+  createCartItem?: Maybe<CartItem>;
   /** Create one category */
   createCategory?: Maybe<Category>;
   /** Create one collection */
@@ -2607,6 +3450,10 @@ export type Mutation = {
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
+  /** Delete one cart from _all_ existing stages. Returns deleted document. */
+  deleteCart?: Maybe<Cart>;
+  /** Delete one cartItem from _all_ existing stages. Returns deleted document. */
+  deleteCartItem?: Maybe<CartItem>;
   /** Delete one category from _all_ existing stages. Returns deleted document. */
   deleteCategory?: Maybe<Category>;
   /** Delete one collection from _all_ existing stages. Returns deleted document. */
@@ -2620,6 +3467,13 @@ export type Mutation = {
   deleteManyAssets: BatchPayload;
   /** Delete many Asset documents, return deleted documents */
   deleteManyAssetsConnection: AssetConnection;
+  /**
+   * Delete many Cart documents
+   * @deprecated Please use the new paginated many mutation (deleteManyCartsConnection)
+   */
+  deleteManyCarts: BatchPayload;
+  /** Delete many Cart documents, return deleted documents */
+  deleteManyCartsConnection: CartConnection;
   /**
    * Delete many Category documents
    * @deprecated Please use the new paginated many mutation (deleteManyCategoriesConnection)
@@ -2641,6 +3495,13 @@ export type Mutation = {
   deleteManyCurrencies: BatchPayload;
   /** Delete many Currency documents, return deleted documents */
   deleteManyCurrenciesConnection: CurrencyConnection;
+  /**
+   * Delete many CartItem documents
+   * @deprecated Please use the new paginated many mutation (deleteManyICarttemsConnection)
+   */
+  deleteManyICarttems: BatchPayload;
+  /** Delete many CartItem documents, return deleted documents */
+  deleteManyICarttemsConnection: CartItemConnection;
   /**
    * Delete many OrderItem documents
    * @deprecated Please use the new paginated many mutation (deleteManyOrderItemsConnection)
@@ -2719,6 +3580,10 @@ export type Mutation = {
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
   /** Publish one asset */
   publishAsset?: Maybe<Asset>;
+  /** Publish one cart */
+  publishCart?: Maybe<Cart>;
+  /** Publish one cartItem */
+  publishCartItem?: Maybe<CartItem>;
   /** Publish one category */
   publishCategory?: Maybe<Category>;
   /** Publish one collection */
@@ -2732,6 +3597,13 @@ export type Mutation = {
   publishManyAssets: BatchPayload;
   /** Publish many Asset documents */
   publishManyAssetsConnection: AssetConnection;
+  /**
+   * Publish many Cart documents
+   * @deprecated Please use the new paginated many mutation (publishManyCartsConnection)
+   */
+  publishManyCarts: BatchPayload;
+  /** Publish many Cart documents */
+  publishManyCartsConnection: CartConnection;
   /**
    * Publish many Category documents
    * @deprecated Please use the new paginated many mutation (publishManyCategoriesConnection)
@@ -2753,6 +3625,13 @@ export type Mutation = {
   publishManyCurrencies: BatchPayload;
   /** Publish many Currency documents */
   publishManyCurrenciesConnection: CurrencyConnection;
+  /**
+   * Publish many CartItem documents
+   * @deprecated Please use the new paginated many mutation (publishManyICarttemsConnection)
+   */
+  publishManyICarttems: BatchPayload;
+  /** Publish many CartItem documents */
+  publishManyICarttemsConnection: CartItemConnection;
   /**
    * Publish many OrderItem documents
    * @deprecated Please use the new paginated many mutation (publishManyOrderItemsConnection)
@@ -2827,6 +3706,10 @@ export type Mutation = {
   publishReview?: Maybe<Review>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
+  /** Schedule to publish one cart */
+  schedulePublishCart?: Maybe<Cart>;
+  /** Schedule to publish one cartItem */
+  schedulePublishCartItem?: Maybe<CartItem>;
   /** Schedule to publish one category */
   schedulePublishCategory?: Maybe<Category>;
   /** Schedule to publish one collection */
@@ -2851,6 +3734,10 @@ export type Mutation = {
   schedulePublishReview?: Maybe<Review>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
+  /** Unpublish one cart from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishCart?: Maybe<Cart>;
+  /** Unpublish one cartItem from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishCartItem?: Maybe<CartItem>;
   /** Unpublish one category from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishCategory?: Maybe<Category>;
   /** Unpublish one collection from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2875,6 +3762,10 @@ export type Mutation = {
   scheduleUnpublishReview?: Maybe<Review>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
+  /** Unpublish one cart from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishCart?: Maybe<Cart>;
+  /** Unpublish one cartItem from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishCartItem?: Maybe<CartItem>;
   /** Unpublish one category from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishCategory?: Maybe<Category>;
   /** Unpublish one collection from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2888,6 +3779,13 @@ export type Mutation = {
   unpublishManyAssets: BatchPayload;
   /** Find many Asset documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyAssetsConnection: AssetConnection;
+  /**
+   * Unpublish many Cart documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyCartsConnection)
+   */
+  unpublishManyCarts: BatchPayload;
+  /** Find many Cart documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyCartsConnection: CartConnection;
   /**
    * Unpublish many Category documents
    * @deprecated Please use the new paginated many mutation (unpublishManyCategoriesConnection)
@@ -2909,6 +3807,13 @@ export type Mutation = {
   unpublishManyCurrencies: BatchPayload;
   /** Find many Currency documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyCurrenciesConnection: CurrencyConnection;
+  /**
+   * Unpublish many CartItem documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyICarttemsConnection)
+   */
+  unpublishManyICarttems: BatchPayload;
+  /** Find many CartItem documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyICarttemsConnection: CartItemConnection;
   /**
    * Unpublish many OrderItem documents
    * @deprecated Please use the new paginated many mutation (unpublishManyOrderItemsConnection)
@@ -2983,6 +3888,10 @@ export type Mutation = {
   unpublishReview?: Maybe<Review>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
+  /** Update one cart */
+  updateCart?: Maybe<Cart>;
+  /** Update one cartItem */
+  updateCartItem?: Maybe<CartItem>;
   /** Update one category */
   updateCategory?: Maybe<Category>;
   /** Update one collection */
@@ -2996,6 +3905,13 @@ export type Mutation = {
   updateManyAssets: BatchPayload;
   /** Update many Asset documents */
   updateManyAssetsConnection: AssetConnection;
+  /**
+   * Update many carts
+   * @deprecated Please use the new paginated many mutation (updateManyCartsConnection)
+   */
+  updateManyCarts: BatchPayload;
+  /** Update many Cart documents */
+  updateManyCartsConnection: CartConnection;
   /**
    * Update many categories
    * @deprecated Please use the new paginated many mutation (updateManyCategoriesConnection)
@@ -3017,6 +3933,13 @@ export type Mutation = {
   updateManyCurrencies: BatchPayload;
   /** Update many Currency documents */
   updateManyCurrenciesConnection: CurrencyConnection;
+  /**
+   * Update many iCarttems
+   * @deprecated Please use the new paginated many mutation (updateManyICarttemsConnection)
+   */
+  updateManyICarttems: BatchPayload;
+  /** Update many CartItem documents */
+  updateManyICarttemsConnection: CartItemConnection;
   /**
    * Update many orderItems
    * @deprecated Please use the new paginated many mutation (updateManyOrderItemsConnection)
@@ -3093,6 +4016,10 @@ export type Mutation = {
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
+  /** Upsert one cart */
+  upsertCart?: Maybe<Cart>;
+  /** Upsert one cartItem */
+  upsertCartItem?: Maybe<CartItem>;
   /** Upsert one category */
   upsertCategory?: Maybe<Category>;
   /** Upsert one collection */
@@ -3120,6 +4047,16 @@ export type Mutation = {
 
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
+};
+
+
+export type MutationCreateCartArgs = {
+  data: CartCreateInput;
+};
+
+
+export type MutationCreateCartItemArgs = {
+  data: CartItemCreateInput;
 };
 
 
@@ -3188,6 +4125,16 @@ export type MutationDeleteAssetArgs = {
 };
 
 
+export type MutationDeleteCartArgs = {
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationDeleteCartItemArgs = {
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationDeleteCategoryArgs = {
   where: CategoryWhereUniqueInput;
 };
@@ -3215,6 +4162,21 @@ export type MutationDeleteManyAssetsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationDeleteManyCartsArgs = {
+  where?: InputMaybe<CartManyWhereInput>;
+};
+
+
+export type MutationDeleteManyCartsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CartManyWhereInput>;
 };
 
 
@@ -3260,6 +4222,21 @@ export type MutationDeleteManyCurrenciesConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<CurrencyManyWhereInput>;
+};
+
+
+export type MutationDeleteManyICarttemsArgs = {
+  where?: InputMaybe<CartItemManyWhereInput>;
+};
+
+
+export type MutationDeleteManyICarttemsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CartItemManyWhereInput>;
 };
 
 
@@ -3442,6 +4419,18 @@ export type MutationPublishAssetArgs = {
 };
 
 
+export type MutationPublishCartArgs = {
+  to?: Array<Stage>;
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationPublishCartItemArgs = {
+  to?: Array<Stage>;
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationPublishCategoryArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3487,6 +4476,24 @@ export type MutationPublishManyAssetsConnectionArgs = {
   to?: Array<Stage>;
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishManyCartsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<CartManyWhereInput>;
+};
+
+
+export type MutationPublishManyCartsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<CartManyWhereInput>;
 };
 
 
@@ -3553,6 +4560,24 @@ export type MutationPublishManyCurrenciesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<CurrencyManyWhereInput>;
+};
+
+
+export type MutationPublishManyICarttemsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<CartItemManyWhereInput>;
+};
+
+
+export type MutationPublishManyICarttemsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<CartItemManyWhereInput>;
 };
 
 
@@ -3795,6 +4820,22 @@ export type MutationSchedulePublishAssetArgs = {
 };
 
 
+export type MutationSchedulePublishCartArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationSchedulePublishCartItemArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishCategoryArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3911,6 +4952,22 @@ export type MutationScheduleUnpublishAssetArgs = {
 };
 
 
+export type MutationScheduleUnpublishCartArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishCartItemArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishCategoryArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -4019,6 +5076,18 @@ export type MutationUnpublishAssetArgs = {
 };
 
 
+export type MutationUnpublishCartArgs = {
+  from?: Array<Stage>;
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationUnpublishCartItemArgs = {
+  from?: Array<Stage>;
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationUnpublishCategoryArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -4060,6 +5129,24 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
   stage?: InputMaybe<Stage>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyCartsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<CartManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyCartsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<CartManyWhereInput>;
 };
 
 
@@ -4122,6 +5209,24 @@ export type MutationUnpublishManyCurrenciesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
   where?: InputMaybe<CurrencyManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyICarttemsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<CartItemManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyICarttemsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<CartItemManyWhereInput>;
 };
 
 
@@ -4347,6 +5452,18 @@ export type MutationUpdateAssetArgs = {
 };
 
 
+export type MutationUpdateCartArgs = {
+  data: CartUpdateInput;
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationUpdateCartItemArgs = {
+  data: CartItemUpdateInput;
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationUpdateCategoryArgs = {
   data: CategoryUpdateInput;
   where: CategoryWhereUniqueInput;
@@ -4379,6 +5496,23 @@ export type MutationUpdateManyAssetsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationUpdateManyCartsArgs = {
+  data: CartUpdateManyInput;
+  where?: InputMaybe<CartManyWhereInput>;
+};
+
+
+export type MutationUpdateManyCartsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: CartUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CartManyWhereInput>;
 };
 
 
@@ -4430,6 +5564,23 @@ export type MutationUpdateManyCurrenciesConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<CurrencyManyWhereInput>;
+};
+
+
+export type MutationUpdateManyICarttemsArgs = {
+  data: CartItemUpdateManyInput;
+  where?: InputMaybe<CartItemManyWhereInput>;
+};
+
+
+export type MutationUpdateManyICarttemsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: CartItemUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CartItemManyWhereInput>;
 };
 
 
@@ -4629,6 +5780,18 @@ export type MutationUpsertAssetArgs = {
 };
 
 
+export type MutationUpsertCartArgs = {
+  upsert: CartUpsertInput;
+  where: CartWhereUniqueInput;
+};
+
+
+export type MutationUpsertCartItemArgs = {
+  upsert: CartItemUpsertInput;
+  where: CartItemWhereUniqueInput;
+};
+
+
 export type MutationUpsertCategoryArgs = {
   upsert: CategoryUpsertInput;
   where: CategoryWhereUniqueInput;
@@ -4709,7 +5872,7 @@ export type Order = Entity & Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Order>;
-  email: Scalars['String']['output'];
+  email?: Maybe<Scalars['String']['output']>;
   /** List of Order versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -4722,7 +5885,7 @@ export type Order = Entity & Node & {
   scheduledIn: Array<ScheduledOperation>;
   /** System stage field */
   stage: Stage;
-  stripeCheckoutId: Scalars['String']['output'];
+  stripeCheckoutId?: Maybe<Scalars['String']['output']>;
   total: Scalars['Int']['output'];
   /** The time the document was updated */
   updatedAt: Scalars['DateTime']['output'];
@@ -4805,9 +5968,9 @@ export type OrderConnection = {
 
 export type OrderCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  email: Scalars['String']['input'];
+  email?: InputMaybe<Scalars['String']['input']>;
   orderItems?: InputMaybe<OrderItemCreateManyInlineInput>;
-  stripeCheckoutId: Scalars['String']['input'];
+  stripeCheckoutId?: InputMaybe<Scalars['String']['input']>;
   total: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -6457,6 +7620,7 @@ export type ProductConnection = {
 
 export type ProductCreateInput = {
   categories?: InputMaybe<CategoryCreateManyInlineInput>;
+  clyx354ut017e07mvcort674u?: InputMaybe<CartItemCreateManyInlineInput>;
   collections?: InputMaybe<CollectionCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** description input for default locale (en) */
@@ -8183,6 +9347,7 @@ export type ProductSizeVariantWhereUniqueInput = {
 
 export type ProductUpdateInput = {
   categories?: InputMaybe<CategoryUpdateManyInlineInput>;
+  clyx354ut017e07mvcort674u?: InputMaybe<CartItemUpdateManyInlineInput>;
   collections?: InputMaybe<CollectionUpdateManyInlineInput>;
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']['input']>;
@@ -8627,6 +9792,18 @@ export type Query = {
   assets: Array<Asset>;
   /** Retrieve multiple assets using the Relay connection interface */
   assetsConnection: AssetConnection;
+  /** Retrieve a single cart */
+  cart?: Maybe<Cart>;
+  /** Retrieve a single cartItem */
+  cartItem?: Maybe<CartItem>;
+  /** Retrieve document version */
+  cartItemVersion?: Maybe<DocumentVersion>;
+  /** Retrieve document version */
+  cartVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple carts */
+  carts: Array<Cart>;
+  /** Retrieve multiple carts using the Relay connection interface */
+  cartsConnection: CartConnection;
   /** Retrieve multiple categories */
   categories: Array<Category>;
   /** Retrieve multiple categories using the Relay connection interface */
@@ -8653,6 +9830,10 @@ export type Query = {
   currencyVersion?: Maybe<DocumentVersion>;
   /** Fetches an object given its ID */
   entities?: Maybe<Array<Entity>>;
+  /** Retrieve multiple iCarttems */
+  iCarttems: Array<CartItem>;
+  /** Retrieve multiple iCarttems using the Relay connection interface */
+  iCarttemsConnection: CartItemConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single order */
@@ -8778,6 +9959,56 @@ export type QueryAssetsConnectionArgs = {
 };
 
 
+export type QueryCartArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: CartWhereUniqueInput;
+};
+
+
+export type QueryCartItemArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: CartItemWhereUniqueInput;
+};
+
+
+export type QueryCartItemVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryCartVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryCartsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<CartOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<CartWhereInput>;
+};
+
+
+export type QueryCartsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<CartOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<CartWhereInput>;
+};
+
+
 export type QueryCategoriesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8895,6 +10126,32 @@ export type QueryCurrencyVersionArgs = {
 export type QueryEntitiesArgs = {
   locales?: InputMaybe<Array<Locale>>;
   where: Array<EntityWhereInput>;
+};
+
+
+export type QueryICarttemsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<CartItemOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<CartItemWhereInput>;
+};
+
+
+export type QueryICarttemsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<CartItemOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<CartItemWhereInput>;
 };
 
 
@@ -10021,7 +11278,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Category | Collection | Currency | Order | OrderItem | Product | ProductColorVariant | ProductRating | ProductSizeColorVariant | ProductSizeVariant | Review;
+export type ScheduledOperationAffectedDocument = Asset | Cart | CartItem | Category | Collection | Currency | Order | OrderItem | Product | ProductColorVariant | ProductRating | ProductSizeColorVariant | ProductSizeVariant | Review;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -11441,6 +12698,45 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type CartAddProductMutationVariables = Exact<{
+  orderId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+  total: Scalars['Int']['input'];
+}>;
+
+
+export type CartAddProductMutation = { createOrderItem?: { id: string } | null };
+
+export type CartChangeItemQuantityMutationVariables = Exact<{
+  itemId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+}>;
+
+
+export type CartChangeItemQuantityMutation = { updateOrderItem?: { id: string } | null };
+
+export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CartCreateMutation = { createOrder?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
+
+export type CartGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { order?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
+
+export type CartFragment = { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> };
+
+export type CartRemoveItemMutationVariables = Exact<{
+  itemId: Scalars['ID']['input'];
+}>;
+
+
+export type CartRemoveItemMutation = { deleteOrderItem?: { id: string } | null };
+
 export type CategoriesGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -11498,6 +12794,21 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CartFragmentDoc = new TypedDocumentString(`
+    fragment Cart on Order {
+  id
+  total
+  orderItems {
+    id
+    product {
+      id
+      name
+      price
+    }
+    quantity
+  }
+}
+    `, {"fragmentName":"Cart"}) as unknown as TypedDocumentString<CartFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductListItem on Product {
   id
@@ -11516,6 +12827,67 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   price
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CartAddProductDocument = new TypedDocumentString(`
+    mutation CartAddProduct($orderId: ID!, $productId: ID!, $quantity: Int!, $total: Int!) {
+  createOrderItem(
+    data: {total: $total, product: {connect: {id: $productId}}, order: {connect: {id: $orderId}}, quantity: $quantity}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddProductMutation, CartAddProductMutationVariables>;
+export const CartChangeItemQuantityDocument = new TypedDocumentString(`
+    mutation CartChangeItemQuantity($itemId: ID!, $quantity: Int!) {
+  updateOrderItem(where: {id: $itemId}, data: {quantity: $quantity}) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartChangeItemQuantityMutation, CartChangeItemQuantityMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate {
+  createOrder(data: {total: 0}) {
+    ...Cart
+  }
+}
+    fragment Cart on Order {
+  id
+  total
+  orderItems {
+    id
+    product {
+      id
+      name
+      price
+    }
+    quantity
+  }
+}`) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($id: ID!) {
+  order(where: {id: $id}, stage: DRAFT) {
+    ...Cart
+  }
+}
+    fragment Cart on Order {
+  id
+  total
+  orderItems {
+    id
+    product {
+      id
+      name
+      price
+    }
+    quantity
+  }
+}`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartRemoveItemDocument = new TypedDocumentString(`
+    mutation CartRemoveItem($itemId: ID!) {
+  deleteOrderItem(where: {id: $itemId}) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartRemoveItemMutation, CartRemoveItemMutationVariables>;
 export const CategoriesGetAllDocument = new TypedDocumentString(`
     query CategoriesGetAll {
   categories {

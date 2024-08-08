@@ -6,7 +6,14 @@ const nextConfig = {
 	pageExtensions: ["ts", "tsx", "mdx"],
 	experimental: { typedRoutes: true, mdxRs: true },
 	images: {
-		domains: ["naszsklep-api.vercel.app", "media.graphassets.com"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "media.graphassets.com",
+				port: "",
+				pathname: "/**",
+			},
+		],
 	},
 };
 
