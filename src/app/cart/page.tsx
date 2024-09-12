@@ -6,6 +6,8 @@ import { formatCurrency } from "@/ui/utils";
 import { ProductQuantityForm } from "@/ui/molecules/ProductQuantityForm";
 import { RemoveCartItemButton } from "@/ui/atoms/RemoveCartItemButton";
 import { unstable_noStore } from "next/cache";
+import { handlePaymentAction } from "./actions";
+import { getCartFromCookie } from "@/api/cart";
 
 export default async function CartPage() {
 	unstable_noStore();
@@ -15,12 +17,7 @@ export default async function CartPage() {
 		redirect("/");
 	}
 
-	const { order: cart } = await executeGraphql({
-		query: CartGetByIdDocument,
-		variables: {
-			id: cartId,
-		},
-	});
+	const cart = await getCartFromCookie();
 
 	if (!cart) {
 		redirect("/");
@@ -64,9 +61,11 @@ export default async function CartPage() {
 					</tr>
 				</tfoot>
 			</table>
-			<button className="mt-10 rounded bg-corduroy-500 px-5 py-2 text-white">
-				Proceed to checkout
-			</button>
+			<form action={handlePaymentAction}>
+				<button type="submit" className="mt-10 rounded bg-corduroy-500 px-5 py-2 text-white">
+					Proceed to checkout
+				</button>
+			</form>
 		</div>
 	);
 }
