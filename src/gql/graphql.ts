@@ -12719,16 +12719,16 @@ export type CartChangeItemQuantityMutation = { updateOrderItem?: { id: string } 
 export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartCreateMutation = { createOrder?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
+export type CartCreateMutation = { createOrder?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> } | null };
 
 export type CartGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type CartGetByIdQuery = { order?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
+export type CartGetByIdQuery = { order?: { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> } | null };
 
-export type CartFragment = { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> };
+export type CartFragment = { id: string, total: number, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> };
 
 export type CartRemoveItemMutationVariables = Exact<{
   itemId: Scalars['ID']['input'];
@@ -12804,6 +12804,10 @@ export const CartFragmentDoc = new TypedDocumentString(`
       id
       name
       price
+      description
+      images {
+        url
+      }
     }
     quantity
   }
@@ -12858,6 +12862,10 @@ export const CartCreateDocument = new TypedDocumentString(`
       id
       name
       price
+      description
+      images {
+        url
+      }
     }
     quantity
   }
@@ -12877,6 +12885,10 @@ export const CartGetByIdDocument = new TypedDocumentString(`
       id
       name
       price
+      description
+      images {
+        url
+      }
     }
     quantity
   }
