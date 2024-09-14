@@ -30,13 +30,13 @@ export async function POST(req: NextRequest): Promise<Response> {
 	) as Stripe.DiscriminatedEvent;
 
 	console.log(event);
-	const cartId = event.data.object.metadata?.cartId;
-	switch (event.type) {
-		case "checkout.session.completed": {
-		}
-		case "checkout.session.expired": {
-		}
-	}
+	// const cartId = event.data.object.metadata?.cartId;
+	// switch (event.type) {
+	// 	case "checkout.session.completed": {
+	// 	}
+	// 	case "checkout.session.expired": {
+	// 	}
+	// }
 
 	return new Response(null, { status: 204 });
 }
