@@ -62,6 +62,12 @@ dependencies:
   server-only:
     specifier: ^0.0.1
     version: 0.0.1
+  stripe:
+    specifier: ^16.6.0
+    version: 16.6.0
+  stripe-event-types:
+    specifier: ^3.1.0
+    version: 3.1.0(stripe@16.6.0)
   tailwindcss:
     specifier: 3.4.6
     version: 3.4.6
@@ -5679,6 +5685,13 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
+  /qs@6.13.0:
+    resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.6
+    dev: false
+
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -6196,6 +6209,22 @@ packages:
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  /stripe-event-types@3.1.0(stripe@16.6.0):
+    resolution: {integrity: sha512-jhPNX5FL81QiBFadek3h+PBQKU5Xg3NURTia6tzyqieDStESbvKqOhnA29ECdA1lPB8KSB5/xdK20k6Q1yOejQ==}
+    peerDependencies:
+      stripe: '>=10.0.0'
+    dependencies:
+      stripe: 16.6.0
+    dev: false
+
+  /stripe@16.6.0:
+    resolution: {integrity: sha512-6hWEt6n7InVyP4p2MfMpyl1GwKRJA2w4VAwxJUbXA9xhT7ToWOdrTXqTz2EnyJkw4PMM03twi3eOWQAXN/+uEg==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@types/node': 20.14.11
+      qs: 6.13.0
+    dev: false
 
   /style-to-object@0.4.4:
     resolution: {integrity: sha512-HYNoHZa2GorYNyqiCaBgsxvcJIn7OHq6inEga+E6Ke3m5JkoqpQbnFssk4jwe+K7AhGa2fcha4wSOf1Kn01dMg==}
