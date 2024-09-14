@@ -2,10 +2,7 @@
 
 import Stripe from "stripe";
 import { executeGraphql } from "@/api/graphqlApi";
-import {
-	CartChangeItemQuantityDocument,
-	CartRemoveItemDocument,
-} from "@/gql/graphql";
+import { CartChangeItemQuantityDocument, CartRemoveItemDocument } from "@/gql/graphql";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -69,24 +66,19 @@ export async function handlePaymentAction() {
 		metadata: {
 			cartId: cart.id,
 		},
-		line_items: cart.orderItems
-			.map((item) =>
-				item.product
-					? {
-							price_data: {
-								currency: "usd",
-								product_data: {
-									name: item.product.name,
-									description: item.product.description,
-									images: item.product.images.map((i) => i.url),
-								},
-								unit_amount: item.product.price,
-							},
-							quantity: item.quantity,
-						}
-					: null,
-			)
-			.filter(Boolean),
+		line_items: cart.orderItems.map((item) => ({
+			price_data: {
+				currency: "usd",
+				product_data: {
+					name: item.product?.name || "",
+					description: item.product?.description || "",
+					images: item.product?.images.map((i) => i.url) || [],
+				},
+				unit_amount: item.product?.price || 0,
+			},
+			quantity: item.quantity,
+		})),
+
 		mode: "payment",
 		success_url: `http://localhost:3000/cart/success?session_id={CHECKOUT_SESSION_ID}`,
 		cancel_url: `http://localhost:3000/cart/canceled`,
@@ -98,4 +90,3 @@ export async function handlePaymentAction() {
 	cookies().set("cartId", "");
 	redirect(checkoutSession.url);
 }
-
